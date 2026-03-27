@@ -1,10 +1,13 @@
-import { Button } from "@/components/ui/button";
-import React from "react";
+import LoginForm from "@/components/auth/LoginForm";
 
-export default function LoginPage() {
-  return (
-    <div>
-      <Button variant="outline">Button</Button>
-    </div>
-  );
+interface LoginParams {
+  searchParams: Promise<{ redirect?: string }>;
 }
+
+const LoginPage = async ({ searchParams }: LoginParams) => {
+  const params = await searchParams;
+  const redirectPath = params.redirect;
+  return <LoginForm redirectPath={redirectPath} />;
+};
+
+export default LoginPage;
