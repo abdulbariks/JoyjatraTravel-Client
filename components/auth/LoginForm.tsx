@@ -13,6 +13,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { loginAction } from "@/services/auth.services";
 import { ILoginPayload, loginZodSchema } from "@/zod/auth.validation";
 import { useForm } from "@tanstack/react-form";
 import { useMutation } from "@tanstack/react-query";
@@ -44,6 +45,8 @@ const LoginForm = ({ redirectPath }: LoginFormProps) => {
       setServerError(null);
       try {
         const result = (await mutateAsync(value)) as any;
+
+        console.log(result);
 
         if (!result.success) {
           setServerError(result.message || "Login failed");
