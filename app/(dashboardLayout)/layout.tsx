@@ -22,7 +22,6 @@ export default async function DashboardLayout({
   admin,
   moderator,
   tourist,
-  common,
 }: {
   admin: React.ReactNode;
   moderator: React.ReactNode;
