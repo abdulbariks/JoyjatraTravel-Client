@@ -17,7 +17,9 @@ export const NavigationSheet = () => {
         <SheetTitle>Navigation Menu</SheetTitle>
       </VisuallyHidden>
 
-      <SheetTrigger render={<Button size="icon" variant="outline" />}><Menu /></SheetTrigger>
+      <SheetTrigger render={<Button size="icon" variant="outline" />}>
+        <Menu />
+      </SheetTrigger>
       <SheetContent className="px-6 py-3">
         <Logo />
         <NavMenu className="mt-6 [&>div]:h-full" orientation="vertical" />
