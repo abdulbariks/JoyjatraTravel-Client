@@ -17,19 +17,26 @@ export default function Hero() {
             Just released v1.0.0 <ArrowUpRight className="ml-1 size-4" />
           </Badge>
           <h1 className="mt-6 max-w-[17ch] font-semibold text-4xl leading-[1.2]! tracking-[-0.035em] md:text-5xl lg:text-[2.75rem] xl:text-[3.25rem]">
-            Customized Shadcn UI Blocks & Components
+            Turn Your Travel Dreams Into Reality
           </h1>
           <p className="mt-6 max-w-[60ch] text-foreground/80 text-lg">
-            Explore a collection of Shadcn UI blocks and components, ready to
-            preview and copy. Streamline your development workflow with
-            easy-to-implement examples.
+            Discover stunning locations, plan your journey, and book with
+            confidence. Adventure, relaxation, and unforgettable memories are
+            just a click away.
           </p>
           <div className="mt-12 flex items-center gap-4">
-            <Button className="rounded-full text-base" size="lg">
-              Get Started <ArrowUpRight className="h-5! w-5!" />
-            </Button>
+            <Link href={"/event"}>
+              {" "}
+              <Button
+                className="rounded-full text-base cursor-pointer"
+                size="lg"
+              >
+                Get Started <ArrowUpRight className="h-5! w-5!" />
+              </Button>
+            </Link>
+
             <Button
-              className="rounded-full text-base shadow-none"
+              className="rounded-full text-base shadow-none cursor-pointer"
               size="lg"
               variant="outline"
             >
@@ -42,6 +49,7 @@ export default function Hero() {
             src="/images/hero.jpg"
             alt="Hero image"
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover"
             priority
           />
