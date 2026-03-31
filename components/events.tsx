@@ -1,38 +1,41 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import CountdownButton from "./shared/CountdownButton";
+import Image from "next/image";
 
 const features = [
   {
-    category: "Marketing and Sales",
-    title: "Collect and enrich leads your way",
+    location: "Sajek Valley",
+    title: "Sajek valley",
     details:
       "Take control over how and when to follow up with your leads. Store and reference leads in multiple tables and, from there, automatically send them personalized emails.",
-    tutorialLink: "#",
+    tutorialLink: "/event/1",
+    image: "/images/sajek.jpg",
   },
   {
-    category: "Project Management",
-    title: "Streamline your workflows effortlessly",
+    location: "Cox's Bazar",
+    title: "Cox's Bazar",
     details:
       "Organize tasks, deadlines, and team collaboration in one place. Use customizable boards to manage projects efficiently and automate routine updates.",
-    tutorialLink: "#",
+    tutorialLink: "/event/2",
   },
   {
-    category: "Customer Support",
-    title: "Deliver seamless customer experiences",
+    location: "Sandwip Island",
+    title: "Sandwip Island",
     details:
       "Track and resolve customer queries faster with an integrated ticketing system. Set priorities, automate follow-ups, and enhance satisfaction with personalized responses.",
-    tutorialLink: "#",
+    tutorialLink: "/event/3",
   },
   {
-    category: "Team Collaboration",
-    title: "Stay connected with your team",
+    location: "Saint Martin's Island",
+    title: "Saint Martin's Island",
     details:
       "Simplify communication and align team efforts with shared boards and real-time updates. Enable transparent goal tracking and instant feedback for better results.",
-    tutorialLink: "#",
+    tutorialLink: "/event/4",
   },
   {
-    category: "Product Development",
+    location: "Product Development",
     title: "Accelerate innovation with ease",
     details:
       "Bring your product ideas to life by managing prototypes, feedback, and iterations in one place. Collaborate with your team to refine features and release with confidence.",
@@ -45,25 +48,33 @@ const Events = () => {
     <div className="flex min-h-screen items-center justify-center">
       <div className="w-full max-w-(--breakpoint-lg) px-6 py-10">
         <h2 className="text-pretty font-semibold text-4xl tracking-[-0.03em] sm:mx-auto sm:max-w-xl sm:text-center md:text-[2.75rem] md:leading-[1.2]">
-          Strengthen Your Strategy
+          Discover Your Next Adventure
         </h2>
-        <p className="mt-2 text-lg text-muted-foreground sm:text-center sm:text-2xl">
-          Enhance your strategy with intelligent tools designed for success.
-        </p>
         <div className="mx-auto mt-8 w-full space-y-20 md:mt-16">
           {features.map((feature) => (
             <div
-              className="flex flex-col items-center gap-x-12 gap-y-6 md:flex-row md:even:flex-row-reverse"
-              key={feature.category}
+              className="flex flex-col items-center gap-x-12 md:flex-row md:even:flex-row-reverse"
+              key={feature.location}
             >
-              <div className="aspect-[4.5/3] w-full basis-1/2 rounded-xl border border-border/50 bg-muted" />
+              <div className="aspect-4.5/3 w-full basis-1/2 rounded-xl border border-border/50 bg-muted relative overflow-hidden">
+                {" "}
+                <Image
+                  src={feature.image || "/images/placeholder.png"}
+                  alt="Event image"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover"
+                  priority
+                />
+              </div>
               <div className="shrink-0 basis-1/2">
                 <span className="font-medium text-muted-foreground text-sm uppercase">
-                  {feature.category}
+                  {feature.location}
                 </span>
-                <h4 className="my-3 font-semibold text-3xl tracking-[-0.01em]">
+                <h4 className="font-semibold text-3xl tracking-[-0.01em]">
                   {feature.title}
                 </h4>
+
                 <p className="text-muted-foreground">{feature.details}</p>
                 <Button
                   className="mt-6 gap-3"
@@ -71,8 +82,9 @@ const Events = () => {
                   render={<Link href={feature.tutorialLink} />}
                   nativeButton={false}
                 >
-                  Learn More <ArrowRight />
+                  Booking for Details <ArrowRight />
                 </Button>
+                <CountdownButton targetDate="2026-04-10T18:00:00" />
               </div>
             </div>
           ))}
