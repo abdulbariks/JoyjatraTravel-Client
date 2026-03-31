@@ -18,11 +18,18 @@ import { Roles } from "@/constants/roles";
 import { adminRoutes } from "@/routes/adminRoutes";
 import { moderatorRoutes } from "@/routes/moderatorRoutes";
 
+type User = {
+  role: string;
+  name: string;
+  email: string;
+  avatar: string;
+};
+
 export function AppSidebar({
   user,
   ...props
 }: {
-  user: { role: string; name: string; email: string; avatar: string };
+  user: User;
 } & React.ComponentProps<typeof Sidebar>) {
   const routesMap: Record<string, SidebarRoutes> = {
     [Roles.admin]: adminRoutes,

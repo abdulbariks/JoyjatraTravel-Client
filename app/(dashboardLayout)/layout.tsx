@@ -1,5 +1,5 @@
-// app/(dashboard)/layout.tsx
-
+export const dynamic = "force-dynamic";
+import { ReactNode } from "react";
 import { AppSidebar } from "@/components/app-sidebar";
 import {
   Breadcrumb,
@@ -17,16 +17,18 @@ import {
 } from "@/components/ui/sidebar";
 import { Roles } from "@/constants/roles";
 import { getUserInfo } from "@/services/auth.services";
+import { redirect } from "next/navigation";
 
 export default async function DashboardLayout({
+  // children,
   admin,
   moderator,
-  tourist,
+  // tourist,
 }: {
-  admin: React.ReactNode;
-  moderator: React.ReactNode;
-  tourist: React.ReactNode;
-  common: React.ReactNode;
+  // children: ReactNode;
+  admin: ReactNode;
+  moderator: ReactNode;
+  // tourist: ReactNode;
 }) {
   const userInfo = await getUserInfo();
   //   const role: UserRole | undefined = user?.role;
@@ -37,9 +39,8 @@ export default async function DashboardLayout({
   console.log("user=========", userInfo);
 
   if (!userInfo) {
-    return <div>Unauthorized</div>;
+    redirect("/login");
   }
-
   return (
     <SidebarProvider>
       <AppSidebar user={userInfo} />
@@ -70,10 +71,11 @@ export default async function DashboardLayout({
         <div>
           {userInfo.role === Roles.admin
             ? admin
-            : userInfo.role === Roles.moderator
-              ? moderator
-              : tourist}
+            : userInfo.role === Roles.moderator && moderator}
         </div>
+
+        {/* optional fallback */}
+        {/* {children} */}
       </SidebarInset>
     </SidebarProvider>
   );
