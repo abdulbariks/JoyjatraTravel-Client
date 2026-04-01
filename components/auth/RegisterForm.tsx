@@ -14,7 +14,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { loginAction } from "@/services/auth.services";
-import { ILoginPayload, loginZodSchema } from "@/zod/auth.validation";
+import {
+  IRegisterPayload,
+  loginZodSchema,
+  registerZodSchema,
+} from "@/zod/auth.validation";
 import { useForm } from "@tanstack/react-form";
 import { useMutation } from "@tanstack/react-query";
 import { Eye, EyeOff } from "lucide-react";
@@ -22,22 +26,24 @@ import Link from "next/link";
 import { useState } from "react";
 import GoogleIcon from "../icons/GoogleIcon";
 
-interface LoginFormProps {
+interface RegisterFormProps {
   redirectPath?: string;
 }
 
-const LoginForm = ({ redirectPath }: LoginFormProps) => {
+const RegisterForm = ({ redirectPath }: RegisterFormProps) => {
   // const queryClient = useQueryClient();
 
   const [serverError, setServerError] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
 
   const { mutateAsync, isPending } = useMutation({
-    mutationFn: (payload: ILoginPayload) => loginAction(payload, redirectPath),
+    mutationFn: (payload: IRegisterPayload) =>
+      loginAction(payload, redirectPath),
   });
 
   const form = useForm({
     defaultValues: {
+      name: "",
       email: "",
       password: "",
     },
@@ -64,7 +70,7 @@ const LoginForm = ({ redirectPath }: LoginFormProps) => {
       <CardHeader className="text-center">
         <CardTitle className="text-2xl font-bold">Welcome Back!</CardTitle>
         <CardDescription>
-          Please enter your credentials to log in.
+          Please enter your credentials to Register.
         </CardDescription>
       </CardHeader>
 
@@ -80,6 +86,20 @@ const LoginForm = ({ redirectPath }: LoginFormProps) => {
           }}
           className="space-y-4"
         >
+          <form.Field
+            name="name"
+            validators={{ onChange: registerZodSchema.shape.name }}
+          >
+            {(field) => (
+              <AppField
+                field={field}
+                label="Email"
+                type="email"
+                placeholder="Enter your email"
+              />
+            )}
+          </form.Field>
+
           <form.Field
             name="email"
             validators={{ onChange: loginZodSchema.shape.email }}
@@ -149,7 +169,7 @@ const LoginForm = ({ redirectPath }: LoginFormProps) => {
                 pendingLabel="Logging In...."
                 disabled={!canSubmit}
               >
-                Log In
+                Register
               </AppSubmitButton>
             )}
           </form.Subscribe>
@@ -182,12 +202,12 @@ const LoginForm = ({ redirectPath }: LoginFormProps) => {
 
       <CardFooter className="justify-center border-t pt-4">
         <p className="text-sm text-muted-foreground">
-          Don&apos;t have an account?{" "}
+          Have an account?{" "}
           <Link
-            href="/register"
+            href="/login"
             className="text-primary font-medium hover:underline underline-offset-4"
           >
-            Sign Up for an account
+            Login for an account
           </Link>
         </p>
       </CardFooter>
@@ -195,4 +215,4 @@ const LoginForm = ({ redirectPath }: LoginFormProps) => {
   );
 };
 
-export default LoginForm;
+export default RegisterForm;
