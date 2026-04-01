@@ -14,13 +14,13 @@ import {
 
 export const moderatorRoutes: SidebarRoutes = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    name: "Abdul Barik",
+    email: "abdulbarik.com",
+    avatar: "/images/saint.jpg",
   },
   teams: [
     {
-      name: "Acme Inc",
+      name: "Joyjatra Travel",
       logo: <GalleryVerticalEndIcon />,
       plan: "Enterprise",
     },
@@ -124,18 +124,18 @@ export const moderatorRoutes: SidebarRoutes = {
   ],
   projects: [
     {
-      name: "Design Engineering",
-      url: "#",
+      name: "Events",
+      url: "/moderator-dashboard/event",
       icon: <FrameIcon />,
     },
     {
-      name: "Sales & Marketing",
-      url: "#",
+      name: "Blogs",
+      url: "/moderator-dashboard/blog",
       icon: <PieChartIcon />,
     },
     {
       name: "Travel",
-      url: "#",
+      url: "/moderator-dashboard",
       icon: <MapIcon />,
     },
   ],
