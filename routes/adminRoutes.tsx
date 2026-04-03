@@ -1,3 +1,4 @@
+import { Logo } from "@/components/logo";
 import { SidebarRoutes } from "@/types/sidebar";
 import {
   GalleryVerticalEndIcon,
@@ -14,87 +15,91 @@ import {
 
 export const adminRoutes: SidebarRoutes = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    name: "admin",
+    email: "admin@example.com",
+    avatar: "/images/saint.jpg",
   },
   teams: [
     {
-      name: "Acme Inc",
-      logo: <GalleryVerticalEndIcon />,
-      plan: "Enterprise",
+      name: "Joyjatra Travel",
+      logo: <Logo />,
+      plan: "Admin",
+      url: "/",
     },
-    {
-      name: "Acme Corp.",
-      logo: <AudioLinesIcon />,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: <TerminalIcon />,
-      plan: "Free",
-    },
+    // {
+    //   name: "Acme Corp.",
+    //   logo: <AudioLinesIcon />,
+    //   plan: "Startup",
+    // },
+    // {
+    //   name: "Evil Corp.",
+    //   logo: <TerminalIcon />,
+    //   plan: "Free",
+    // },
   ],
   navMain: [
     {
-      title: "Playground",
-      url: "#",
+      title: "Dashboard",
+      url: "/admin-dashboard",
       icon: <TerminalSquareIcon />,
       isActive: true,
       items: [
         {
           title: "History",
-          url: "#",
+          url: "/admin-dashboard",
         },
         {
           title: "Starred",
-          url: "#",
+          url: "/admin-dashboard/starred",
         },
         {
           title: "Settings",
-          url: "#",
+          url: "/admin-dashboard/settings",
         },
       ],
     },
     {
-      title: "Models",
-      url: "#",
+      title: "Events",
+      url: "/admin-dashboard/events",
       icon: <BotIcon />,
       items: [
         {
-          title: "Genesis",
-          url: "#",
+          title: "Upcoming",
+          url: "/admin-dashboard/events/upcoming",
         },
         {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
+          title: "All Events",
+          url: "/admin-dashboard/events/all",
         },
       ],
     },
     {
-      title: "Documentation",
-      url: "#",
+      title: "Blogs",
+      url: "/admin-dashboard/blogs",
       icon: <BookOpenIcon />,
       items: [
         {
-          title: "Introduction",
-          url: "#",
+          title: "All Blogs",
+          url: "/admin-dashboard/blogs",
         },
         {
-          title: "Get Started",
-          url: "#",
+          title: "Upcoming Blogs",
+          url: "/admin-dashboard/blogs/upcoming",
+        },
+      ],
+    },
+    {
+      title: "Moderators",
+      url: "/admin-dashboard/moderators",
+      icon: <BookOpenIcon />,
+      items: [
+        {
+          title: "All Moderators",
+          url: "/admin-dashboard/moderators",
         },
         {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
+          title: "Upcoming Moderators",
+          url: "/admin-dashboard/moderators/upcoming",
         },
       ],
     },

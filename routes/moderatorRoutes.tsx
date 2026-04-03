@@ -7,9 +7,9 @@ import {
   BotIcon,
   BookOpenIcon,
   Settings2Icon,
-  FrameIcon,
-  PieChartIcon,
-  MapIcon,
+  // FrameIcon,
+  // PieChartIcon,
+  // MapIcon,
 } from "lucide-react";
 
 export const moderatorRoutes: SidebarRoutes = {
@@ -22,17 +22,8 @@ export const moderatorRoutes: SidebarRoutes = {
     {
       name: "Joyjatra Travel",
       logo: <GalleryVerticalEndIcon />,
-      plan: "Enterprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: <AudioLinesIcon />,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: <TerminalIcon />,
-      plan: "Free",
+      plan: "Moderator",
+      url: "/",
     },
   ],
   navMain: [
@@ -44,7 +35,7 @@ export const moderatorRoutes: SidebarRoutes = {
       items: [
         {
           title: "History",
-          url: "/moderator-dashboard/history",
+          url: "/moderator-dashboard",
         },
         {
           title: "Starred",

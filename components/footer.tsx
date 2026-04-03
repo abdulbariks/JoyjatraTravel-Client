@@ -15,31 +15,23 @@ import { InstagramIcon } from "./icons/InstagramIcon";
 
 const footerSections = [
   {
-    title: "Product",
+    title: "Discover",
     links: [
       {
-        title: "Overview",
-        href: "#",
+        title: "Home",
+        href: "/",
       },
       {
-        title: "Features",
-        href: "#",
+        title: "Team",
+        href: "/team",
       },
       {
-        title: "Solutions",
-        href: "#",
+        title: "About Us",
+        href: "/about",
       },
       {
-        title: "Tutorials",
-        href: "#",
-      },
-      {
-        title: "Pricing",
-        href: "#",
-      },
-      {
-        title: "Releases",
-        href: "#",
+        title: "Contact Us",
+        href: "/contact-us",
       },
     ],
   },
@@ -47,28 +39,16 @@ const footerSections = [
     title: "Resources",
     links: [
       {
-        title: "Blog",
-        href: "#",
+        title: "Event",
+        href: "/Event",
       },
       {
-        title: "Newsletter",
-        href: "#",
+        title: "Blogs",
+        href: "/blogs",
       },
       {
-        title: "Events",
-        href: "#",
-      },
-      {
-        title: "Help centre",
-        href: "#",
-      },
-      {
-        title: "Tutorials",
-        href: "#",
-      },
-      {
-        title: "Support",
-        href: "#",
+        title: "Gallery",
+        href: "/gallery",
       },
     ],
   },

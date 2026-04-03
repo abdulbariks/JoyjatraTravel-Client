@@ -10,6 +10,7 @@ export interface SidebarTeam {
   name: string;
   logo: ReactNode;
   plan: string;
+  url: string;
 }
 
 export interface SidebarSubItem {

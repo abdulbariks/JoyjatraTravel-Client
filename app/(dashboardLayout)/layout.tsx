@@ -37,7 +37,7 @@ export default async function DashboardLayout({
   //   const normalizedRole = role === Roles.super_admin ? Roles.admin : role;
 
   const userInfo = {
-    role: "MODERATOR",
+    role: "ADMIN",
     name: "abdul barik",
     email: "abdulbarik@gmail.com",
     avatar: "/images/saint.jpg",
