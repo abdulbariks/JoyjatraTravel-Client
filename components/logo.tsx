@@ -8,8 +8,8 @@ export const Logo = () => (
   >
     <defs>
       <linearGradient id="g1" x1="0" y1="0" x2="0" y2="32">
-        <stop offset="0%" stop-color="#ff6a00" />
-        <stop offset="100%" stop-color="#ffd500" />
+        <stop offset="0%" stopColor="#ff6a00" />
+        <stop offset="100%" stopColor="#ffd500" />
       </linearGradient>
     </defs>
 
@@ -19,15 +19,16 @@ export const Logo = () => (
       r="14"
       fill="url(#g1)"
       stroke="black"
-      stroke-width="2"
+      strokeWidth="2"
     />
 
     <path d="M6 20 Q12 16 18 20 T26 20 L26 28 L6 28 Z" fill="black" />
-    <text x="36" y="18" font-size="20" font-weight="bold" fill="currentColor">
+
+    <text x="36" y="18" fontSize="20" fontWeight="bold" fill="currentColor">
       Joyjatra
     </text>
 
-    <text x="36" y="32" font-size="12" fill="currentColor">
+    <text x="36" y="32" fontSize="12" fill="currentColor">
       Travel
     </text>
   </svg>

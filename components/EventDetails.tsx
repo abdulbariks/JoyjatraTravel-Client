@@ -1,3 +1,5 @@
+"use client";
+import { useState } from "react";
 import {
   ArrowUpRight,
   CirclePlay,
@@ -8,8 +10,29 @@ import {
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+
+// shadcn dialog
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import BookingModal from "./modal/BookingModal";
 
 export default function EventDetails() {
+  const [open, setOpen] = useState(false);
+  const router = useRouter();
+  const isLoggedIn = true; // Replace with actual authentication logic
+  const handleBooking = () => {
+    if (!isLoggedIn) {
+      router.push("/login");
+    } else {
+      setOpen(true);
+    }
+  };
   return (
     <div className="flex min-h-screen items-center justify-center overflow-hidden">
       <div className="mx-auto grid w-full max-w-(--breakpoint-xl) gap-12 px-6 py-12 lg:grid-cols-2 lg:py-0">
@@ -34,16 +57,15 @@ export default function EventDetails() {
             just a click away.
           </p>
           <div className="mt-12 flex items-center gap-4">
-            <Link href={""}>
-              {" "}
-              <Button
-                className="rounded-full text-base cursor-pointer"
-                size="lg"
-              >
-                Booking Now <ArrowUpRight className="h-5! w-5!" />
-              </Button>
-            </Link>
-
+            {" "}
+            <Button
+              onClick={handleBooking}
+              className="rounded-full text-base cursor-pointer"
+              size="lg"
+            >
+              Booking Now <ArrowUpRight className="h-5! w-5!" />
+            </Button>
+            <BookingModal open={open} setOpen={setOpen} />
             <Button
               className="rounded-full text-base shadow-none cursor-pointer"
               size="lg"
