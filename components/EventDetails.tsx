@@ -1,25 +1,9 @@
 "use client";
 import { useState } from "react";
-import {
-  ArrowUpRight,
-  CirclePlay,
-  LocateIcon,
-  LocationEdit,
-  LocationEditIcon,
-} from "lucide-react";
-import Link from "next/link";
+import { ArrowUpRight, CirclePlay, LocationEditIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-
-// shadcn dialog
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import BookingModal from "./modal/BookingModal";
 
 export default function EventDetails() {

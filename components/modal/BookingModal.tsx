@@ -1,16 +1,12 @@
 "use client";
-
-import { useForm } from "@tanstack/react-form";
-import { z } from "zod";
 import { useState } from "react";
-
+import { useForm } from "@tanstack/react-form";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -21,18 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
-// -------------------
-// ✅ Zod Schema
-// -------------------
-const bookingSchema = z.object({
-  name: z.string().min(2, "Name is required"),
-  address: z.string().min(5, "Address is required"),
-  phone: z.string().min(11, "Phone must be at least 11 digits"),
-  persons: z.string().min(1, "Select persons"),
-});
-
-type BookingFormData = z.infer<typeof bookingSchema>;
+import { BookingFormData, bookingSchema } from "@/zod/booking.validation";
 
 export default function BookingModal({
   open,
@@ -61,15 +46,24 @@ export default function BookingModal({
         setErrors(fieldErrors);
         return;
       }
-
       setErrors({});
       console.log("Booking Data:", result.data);
+      form.reset();
       setOpen(false);
     },
   });
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog
+      open={open}
+      onOpenChange={(val) => {
+        setOpen(val);
+        if (!val) {
+          form.reset();
+          setErrors({});
+        }
+      }}
+    >
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Book Your Trip</DialogTitle>

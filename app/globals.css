@@ -128,3 +128,10 @@
     @apply font-sans;
   }
 }
+
+.jodit-status-bar__powered-by {
+  display: none !important;
+}
+.jodit-status-bar {
+  display: none !important;
+}

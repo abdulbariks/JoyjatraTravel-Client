@@ -34,6 +34,6 @@ export interface SidebarProject {
 export interface SidebarRoutes {
   user: SidebarUser;
   teams: SidebarTeam[];
-  navMain: SidebarNavItem[];
-  projects: SidebarProject[];
+  navMain?: SidebarNavItem[];
+  projects?: SidebarProject[];
 }

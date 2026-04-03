@@ -37,64 +37,60 @@ export const moderatorRoutes: SidebarRoutes = {
   ],
   navMain: [
     {
-      title: "Playground",
-      url: "#",
+      title: "Dashboard",
+      url: "/moderator-dashboard",
       icon: <TerminalSquareIcon />,
       isActive: true,
       items: [
         {
           title: "History",
-          url: "#",
+          url: "/moderator-dashboard/history",
         },
         {
           title: "Starred",
-          url: "#",
+          url: "/moderator-dashboard/starred",
         },
         {
           title: "Settings",
-          url: "#",
+          url: "/moderator-dashboard/settings",
         },
       ],
     },
     {
-      title: "Models",
-      url: "#",
+      title: "Events",
+      url: "/moderator-dashboard/events",
       icon: <BotIcon />,
       items: [
         {
-          title: "Genesis",
-          url: "#",
+          title: "Upcoming",
+          url: "/moderator-dashboard/events/upcoming",
         },
         {
-          title: "Explorer",
-          url: "#",
+          title: "Create Event",
+          url: "/moderator-dashboard/events/create",
         },
         {
-          title: "Quantum",
-          url: "#",
+          title: "Update Event",
+          url: "/moderator-dashboard/events/update",
         },
       ],
     },
     {
-      title: "Documentation",
-      url: "#",
+      title: "Blogs",
+      url: "/moderator-dashboard/blog",
       icon: <BookOpenIcon />,
       items: [
         {
-          title: "Introduction",
-          url: "#",
+          title: "All Blogs",
+          url: "/moderator-dashboard/blog",
         },
         {
-          title: "Get Started",
-          url: "#",
+          title: "Create Blog",
+          url: "/moderator-dashboard/blog/create",
         },
         {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
+          title: "Update Blog",
+          url: "/moderator-dashboard/blog/update",
         },
       ],
     },
@@ -122,21 +118,21 @@ export const moderatorRoutes: SidebarRoutes = {
       ],
     },
   ],
-  projects: [
-    {
-      name: "Events",
-      url: "/moderator-dashboard/event",
-      icon: <FrameIcon />,
-    },
-    {
-      name: "Blogs",
-      url: "/moderator-dashboard/blog",
-      icon: <PieChartIcon />,
-    },
-    {
-      name: "Travel",
-      url: "/moderator-dashboard",
-      icon: <MapIcon />,
-    },
-  ],
+  // projects: [
+  //   {
+  //     name: "Events",
+  //     url: "/moderator-dashboard/event",
+  //     icon: <FrameIcon />,
+  //   },
+  //   {
+  //     name: "Blogs",
+  //     url: "/moderator-dashboard/blog",
+  //     icon: <PieChartIcon />,
+  //   },
+  //   {
+  //     name: "Travel",
+  //     url: "/moderator-dashboard",
+  //     icon: <MapIcon />,
+  //   },
+  // ],
 };
