@@ -1,4 +1,4 @@
-# Joyjatra Travel 🌍
+# Joyjatra Travel Frontend 🌍
 
 Joyjatra Travel is a high-performance travel management platform built with **Next.js**. It features a robust Role-Based Access Control (RBAC) system, real-time support messaging, and advanced data management tools.
 
