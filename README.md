@@ -40,7 +40,7 @@ Joyjatra Travel is a high-performance travel management platform built with **Ne
 
 1. **Clone the repository**
    ```bash
-   git clone [[https://github.com/your-username/joyjatra-travel.git](https://github.com/abdulbariks/JoyjatraTravel-Client)](https://github.com/your-username/joyjatra-travel.git)
+   git clone https://github.com/abdulbariks/JoyjatraTravel-Client
    cd JoyjatraTravel-Client
    Configure Environment Variables:
    (NEXT_PUBLIC_API_URL=your_backend_api_url)
