@@ -50,6 +50,10 @@ const footerSections = [
         title: "Gallery",
         href: "/gallery",
       },
+      {
+        title: "Terms & Condition",
+        href: "/terms",
+      },
     ],
   },
 ];
