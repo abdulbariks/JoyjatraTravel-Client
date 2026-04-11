@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Joyjatra Travel Frontend 🌍
 
-## Getting Started
+Joyjatra Travel is a high-performance travel management platform built with **Next.js**. It features a robust Role-Based Access Control (RBAC) system, real-time support messaging, and advanced data management tools.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✨ Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 🛡️ Role-Based Access Control (RBAC)
+- **Admin**: Full system access, including user management and platform configuration.
+- **Moderator**: Create and manage travel events, write blogs, and handle support messages.
+- **User**: Browse events, read blogs, and book travel experiences.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### ⚡ Technical Highlights
+- **Real-time Interaction**: Instant support messaging powered by **Socket.io**.
+- **Dynamic Data Management**: Advanced filtering and sorting using **TanStack Table**.
+- **Optimized Data Fetching**: Robust server-state management with **TanStack Query**.
+- **Type-Safe Forms**: Complex form validation via **TanStack Form** and TypeScript.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🛠️ Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+- **Framework**: Next.js (App Router)
+- **Language**: TypeScript
+- **Package Manager**: pnpm
+- **UI/UX**: Shadcn UI, Tailwind CSS
+- **State & Networking**: TanStack Query, Axios, Socket.io
+- **Forms & Tables**: TanStack Form, TanStack Table
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🚀 Getting Started
 
-## Deploy on Vercel
+### Prerequisites
+- **Node.js**: v18.17 or later
+- **pnpm**: `npm install -g pnpm.`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 📦 Installation & Setup
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/abdulbariks/JoyjatraTravel-Client
+   cd JoyjatraTravel-Client
+   Configure Environment Variables:
+   (NEXT_PUBLIC_API_URL=your_backend_api_url)
+   (NEXT_PUBLIC_SOCKET_URL=your_socket_server_url)
+   pnpm install
+   pnpm dev
+   ```
