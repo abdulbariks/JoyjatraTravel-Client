@@ -11,6 +11,7 @@ import {
   FrameIcon,
   PieChartIcon,
   MapIcon,
+  MessageCircle,
 } from "lucide-react";
 
 export const adminRoutes: SidebarRoutes = {
@@ -129,9 +130,9 @@ export const adminRoutes: SidebarRoutes = {
   ],
   projects: [
     {
-      name: "Design Engineering",
-      url: "#",
-      icon: <FrameIcon />,
+      name: "Chats",
+      url: "/admin-dashboard/chats",
+      icon: <MessageCircle />,
     },
     {
       name: "Sales & Marketing",
