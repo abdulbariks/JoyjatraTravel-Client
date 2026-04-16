@@ -30,20 +30,20 @@ export default async function DashboardLayout({
   moderator: ReactNode;
   // tourist: ReactNode;
 }) {
-  // const userInfo = await getUserInfo();
+  const userInfo = await getUserInfo();
   // const role: UserRole | undefined = user?.role;
 
   //   // normalize SUPER_ADMIN → ADMIN
   //   const normalizedRole = role === Roles.super_admin ? Roles.admin : role;
 
-  const userInfo = {
-    role: "ADMIN",
-    name: "abdul barik",
-    email: "abdulbarik@gmail.com",
-    avatar: "/images/saint.jpg",
-  };
+  // const userInfo = {
+  //   role: "ADMIN",
+  //   name: "abdul barik",
+  //   email: "abdulbarik@gmail.com",
+  //   avatar: "/images/saint.jpg",
+  // };
 
-  console.log("user=========", userInfo);
+  // console.log("user=========", userInfo);
 
   if (!userInfo) {
     redirect("/login");
@@ -76,7 +76,7 @@ export default async function DashboardLayout({
         </header>
 
         <div>
-          {userInfo.role === Roles.admin
+          {userInfo.role === Roles.admin || userInfo.role === Roles.super_admin
             ? admin
             : userInfo.role === Roles.moderator && moderator}
         </div>
