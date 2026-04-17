@@ -100,7 +100,7 @@ export default function Events({
                 >
                   Booking for Details <ArrowRight />
                 </Button>
-                <CountdownButton targetDate="2026-04-10T18:00:00" />
+                <CountdownButton targetDate={event?.startDate} />
               </div>
             </div>
           ))}

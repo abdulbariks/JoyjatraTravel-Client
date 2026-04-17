@@ -164,3 +164,29 @@ export async function getUserInfo() {
     return null;
   }
 }
+
+export const logoutAction = async () => {
+  const cookieStore = await cookies();
+  const accessToken = cookieStore.get("accessToken")?.value;
+  try {
+    //  Call your backend logout endpoint
+    // This triggers the AuthController.logoutUser logic you provided
+    await fetch(`${BASE_API_URL}/auth/logout`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+  } catch (error) {
+    console.error("Backend logout failed:", error);
+  } finally {
+    // Always clear the cookies locally even if the fetch fails
+    cookieStore.delete("accessToken");
+    cookieStore.delete("refreshToken");
+    cookieStore.delete("better-auth.session_token");
+
+    // Redirect to the home page
+    redirect("/");
+  }
+};
