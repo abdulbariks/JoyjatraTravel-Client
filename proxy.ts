@@ -100,38 +100,35 @@ export async function proxy(request: NextRequest) {
     const userInfo = await getUserInfo();
     if (userInfo) {
       // Email Verification
-      if (userInfo.emailVerified === false) {
-        if (pathname !== "/verify-email") {
-          const verifyUrl = new URL("/verify-email", request.url);
-          verifyUrl.searchParams.set("email", userInfo.email);
-          return NextResponse.redirect(verifyUrl);
-        }
-        return NextResponse.next();
-      }
-
+      // if (userInfo.emailVerified === false) {
+      //   if (pathname !== "/verify-email") {
+      //     const verifyUrl = new URL("/verify-email", request.url);
+      //     verifyUrl.searchParams.set("email", userInfo.email);
+      //     return NextResponse.redirect(verifyUrl);
+      //   }
+      //   return NextResponse.next();
+      // }
       // Handle redirecting away from verify-email if already verified
-      if (userInfo.emailVerified && pathname === "/verify-email") {
-        return NextResponse.redirect(
-          new URL(getDefaultDashboardRoute(userRole as UserRole), request.url),
-        );
-      }
-
+      // if (userInfo.emailVerified && pathname === "/verify-email") {
+      //   return NextResponse.redirect(
+      //     new URL(getDefaultDashboardRoute(userRole as UserRole), request.url),
+      //   );
+      // }
       // Password Change Required
-      if (userInfo.needPasswordChange) {
-        if (pathname !== "/reset-password") {
-          const resetUrl = new URL("/reset-password", request.url);
-          resetUrl.searchParams.set("email", userInfo.email);
-          return NextResponse.redirect(resetUrl);
-        }
-        return NextResponse.next();
-      }
-
+      // if (userInfo.needPasswordChange) {
+      //   if (pathname !== "/reset-password") {
+      //     const resetUrl = new URL("/reset-password", request.url);
+      //     resetUrl.searchParams.set("email", userInfo.email);
+      //     return NextResponse.redirect(resetUrl);
+      //   }
+      //   return NextResponse.next();
+      // }
       // Handle redirecting away from reset-password if not needed
-      if (!userInfo.needPasswordChange && pathname === "/reset-password") {
-        return NextResponse.redirect(
-          new URL(getDefaultDashboardRoute(userRole as UserRole), request.url),
-        );
-      }
+      // if (!userInfo.needPasswordChange && pathname === "/reset-password") {
+      //   return NextResponse.redirect(
+      //     new URL(getDefaultDashboardRoute(userRole as UserRole), request.url),
+      //   );
+      // }
     }
 
     // 7. Role-Based Access Control (RBAC)

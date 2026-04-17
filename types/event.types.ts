@@ -20,3 +20,14 @@ export interface IEvent {
   moderator: IModerator;
   reviews: IReview[];
 }
+
+export interface ICreateEventPayload {
+  name: string;
+  description: string;
+  location: string;
+  price: number;
+  imageUrl?: string | null;
+  startDate: string;
+  endDate: string;
+  content: string;
+}

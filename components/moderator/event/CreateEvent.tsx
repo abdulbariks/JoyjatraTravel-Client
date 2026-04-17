@@ -5,12 +5,14 @@ import { z } from "zod";
 import JoditEditor from "jodit-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { createEvent } from "@/services/event.services";
+import { useMutation } from "@tanstack/react-query";
 
 const eventSchema = z.object({
-  title: z.string().min(3, "Title is required"),
+  name: z.string().min(3, "Name is required"),
   description: z.string().min(10, "Description is required"),
   location: z.string().min(3, "Location is required"),
-  image: z.string().min(1, "Image URL is required"),
+  imageUrl: z.string().min(1, "Image URL is required"),
   price: z.string().min(1, "Price is required"),
   startTime: z.string().min(1, "Start time is required"),
   endTime: z.string().min(1, "End time is required"),
@@ -42,19 +44,44 @@ export default function CreateEvent() {
   const [errors, setErrors] = useState<
     Partial<Record<keyof EventFormData, string[]>>
   >({});
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const { mutate, isPending } = useMutation({
+    mutationFn: createEvent,
+    onSuccess: () => {
+      alert("Event Created ✅");
+      form.reset();
+    },
+    onError: () => {
+      alert("Failed to create event ❌");
+    },
+  });
 
   const form = useForm({
     defaultValues: {
-      title: "",
+      name: "",
       description: "",
       location: "",
-      image: "",
+      imageUrl: "",
       price: "",
       startTime: "",
       endTime: "",
       personLimit: "",
       content: "",
     } as EventFormData,
+
+    // onSubmit: async ({ value }) => {
+    //   const result = eventSchema.safeParse(value);
+
+    //   if (!result.success) {
+    //     setErrors(result.error.flatten().fieldErrors);
+    //     return;
+    //   }
+
+    //   console.log("Event Data:", result.data);
+
+    //   setErrors({});
+    //   form.reset();
+    // },
 
     onSubmit: async ({ value }) => {
       const result = eventSchema.safeParse(value);
@@ -63,11 +90,22 @@ export default function CreateEvent() {
         setErrors(result.error.flatten().fieldErrors);
         return;
       }
+      const formData = new FormData();
+      formData.append("name", result.data.name);
+      formData.append("description", result.data.description);
+      formData.append("location", result.data.location);
+      formData.append("price", String(Number(result.data.price)));
+      formData.append("startDate", result.data.startTime);
+      formData.append("endDate", result.data.endTime);
+      formData.append("content", result.data.content);
 
-      console.log("Event Data:", result.data);
+      // image file
+      if (imageFile) {
+        formData.append("image", imageFile);
+      }
+      mutate(formData);
 
       setErrors({});
-      form.reset();
     },
   });
 
@@ -88,18 +126,18 @@ export default function CreateEvent() {
             }}
             className="space-y-5"
           >
-            {/* Title */}
-            <form.Field name="title">
+            {/* Name */}
+            <form.Field name="name">
               {(field) => (
                 <div>
                   <Input
-                    placeholder="Event Title"
+                    placeholder="Event Name"
                     value={field.state.value}
                     onChange={(e) => field.handleChange(e.target.value)}
                   />
-                  {errors.title && (
+                  {errors.name && (
                     <p className="text-red-500 text-sm mt-1">
-                      {errors.title[0]}
+                      {errors.name[0]}
                     </p>
                   )}
                 </div>
@@ -145,17 +183,32 @@ export default function CreateEvent() {
               </form.Field>
 
               {/* Image */}
-              <form.Field name="image">
+              <form.Field name="imageUrl">
                 {(field) => (
-                  <div>
+                  <div className="space-y-2">
+                    {/* File Input */}
                     <Input
-                      placeholder="Image URL"
-                      value={field.state.value}
-                      onChange={(e) => field.handleChange(e.target.value)}
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (!file) return;
+                        setImageFile(file);
+                        //  show file name instead of preview
+                        field.handleChange(file.name);
+                      }}
                     />
-                    {errors.image && (
-                      <p className="text-red-500 text-sm mt-1">
-                        {errors.image[0]}
+                    {/* File Name Display */}
+                    {field.state.value && (
+                      <p className="text-sm text-muted-foreground">
+                        Selected: {field.state.value}
+                      </p>
+                    )}
+
+                    {/* Error */}
+                    {errors.imageUrl && (
+                      <p className="text-red-500 text-sm">
+                        {errors.imageUrl[0]}
                       </p>
                     )}
                   </div>
