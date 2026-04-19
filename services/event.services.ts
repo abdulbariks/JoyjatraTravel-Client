@@ -5,7 +5,7 @@ import { httpClient } from "@/lib/axios/httpClient";
 
 export const getEvents = async (queryString: string = ""): Promise<IEvent[]> => {
   try {
-    // 1. Fetch the full API response
+    // Fetch the full API response
     const res = await httpClient.get<IEventResponse>(
       queryString ? `/event?${queryString}` : "/event"
     );
@@ -13,6 +13,17 @@ export const getEvents = async (queryString: string = ""): Promise<IEvent[]> => 
   } catch (error) {
     console.error("Error fetching events:", error);
     return [];
+  }
+};
+
+export const getEventById = async (id: string): Promise<IEvent | null> => {
+  try {
+    const res = await httpClient.get<IEvent>(`/event/${id}`);
+    // console.log(res);
+    return res?.data;
+  } catch (error) {
+    console.error("Error fetching event:", error);
+    return null;
   }
 };
 

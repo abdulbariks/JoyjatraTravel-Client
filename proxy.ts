@@ -132,14 +132,14 @@ export async function proxy(request: NextRequest) {
     }
 
     // 7. Role-Based Access Control (RBAC)
-    if (routerOwner !== "COMMON" && routerOwner !== userRole) {
-      console.log(
-        `Access Denied: Path ${pathname} requires ${routerOwner}, User is ${userRole}`,
-      );
-      return NextResponse.redirect(
-        new URL(getDefaultDashboardRoute(userRole as UserRole), request.url),
-      );
-    }
+    // if (routerOwner !== "COMMON" && routerOwner !== userRole) {
+    //   console.log(
+    //     `Access Denied: Path ${pathname} requires ${routerOwner}, User is ${userRole}`,
+    //   );
+    //   return NextResponse.redirect(
+    //     new URL(getDefaultDashboardRoute(userRole as UserRole), request.url),
+    //   );
+    // }
 
     return NextResponse.next();
   } catch (error) {

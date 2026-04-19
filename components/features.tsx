@@ -102,7 +102,7 @@ const RenderCardContent = ({ event }: { event: IEvent }) => (
               <p>Event Fee: {event?.price} Tk</p>
             </div>
             <div className="flex gap-2">
-              <p>Start Date:</p>
+              <p>Start Event:</p>
               <CountdownButton targetDate={event?.startDate} />
             </div>
           </div>
