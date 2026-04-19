@@ -1,17 +1,17 @@
 "use server";
 
-import { ICreateEventPayload, IEvent } from "@/types/event.types";
+import { IEvent, IEventResponse } from "@/types/event.types";
 import { httpClient } from "@/lib/axios/httpClient";
 
-export const getEvents = async (queryString?: string): Promise<IEvent[]> => {
+export const getEvents = async (queryString: string = ""): Promise<IEvent[]> => {
   try {
-    const res = await httpClient.get<IEvent[]>(
-      queryString ? `/event?${queryString}` : "/event",
+    // 1. Fetch the full API response
+    const res = await httpClient.get<IEventResponse>(
+      queryString ? `/event?${queryString}` : "/event"
     );
-
-    return res?.data ?? [];
+    return res.data?.data?? [];
   } catch (error) {
-    console.log("Error fetching events:", error);
+    console.error("Error fetching events:", error);
     return [];
   }
 };

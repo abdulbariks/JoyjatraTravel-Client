@@ -11,7 +11,7 @@ import { Suspense } from "react";
 // Create a small component for the Auth section
 const AuthSection = async () => {
   const userInfo = await getUserInfo().catch(() => null);
-  console.log("user=========", userInfo);
+  // console.log("user=========", userInfo);
   if (!userInfo) {
     return (
       <div className="flex items-center gap-3">

@@ -16,7 +16,6 @@ export interface IEvent {
   createdAt: string;
   updatedAt: string;
   moderatorId: string;
-
   moderator: IModerator;
   reviews: IReview[];
 }
@@ -30,4 +29,17 @@ export interface ICreateEventPayload {
   startDate: string;
   endDate: string;
   content: string;
+}
+
+
+export interface IEventResponse {
+  success: boolean;
+  message: string;
+    data: IEvent[];
+    meta: {
+      page: number;
+      limit: number;
+      total: number;
+      totalPages: number; 
+  };
 }

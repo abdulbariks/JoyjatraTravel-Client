@@ -49,14 +49,14 @@ export const adminRoutes: SidebarRoutes = {
           title: "History",
           url: "/admin-dashboard",
         },
-        {
-          title: "Starred",
-          url: "/admin-dashboard/starred",
-        },
-        {
-          title: "Settings",
-          url: "/admin-dashboard/settings",
-        },
+        // {
+        //   title: "Starred",
+        //   url: "/admin-dashboard/starred",
+        // },
+        // {
+        //   title: "Settings",
+        //   url: "/admin-dashboard/settings",
+        // },
       ],
     },
     {
@@ -110,20 +110,20 @@ export const adminRoutes: SidebarRoutes = {
       icon: <Settings2Icon />,
       items: [
         {
-          title: "General",
-          url: "#",
+          title: "About Us",
+          url: "/admin-dashboard/about-us",
         },
         {
           title: "Team",
-          url: "#",
+          url: "/admin-dashboard/team",
         },
         {
-          title: "Billing",
-          url: "#",
+          title: "Contact Us",
+          url: "/admin-dashboard/contact-us",
         },
         {
-          title: "Limits",
-          url: "#",
+          title: "Terms & Condition",
+          url: "/admin-dashboard/terms-condition",
         },
       ],
     },
@@ -134,15 +134,15 @@ export const adminRoutes: SidebarRoutes = {
       url: "/admin-dashboard/chats",
       icon: <MessageCircle />,
     },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: <PieChartIcon />,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: <MapIcon />,
-    },
+    // {
+    //   name: "Sales & Marketing",
+    //   url: "#",
+    //   icon: <PieChartIcon />,
+    // },
+    // {
+    //   name: "Travel",
+    //   url: "#",
+    //   icon: <MapIcon />,
+    // },
   ],
 };

@@ -37,7 +37,7 @@ export function NavProjects({
   if (!projects || projects.length === 0) return null;
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-      <SidebarGroupLabel>Projects</SidebarGroupLabel>
+      <SidebarGroupLabel>Support</SidebarGroupLabel>
       <SidebarMenu>
         {projects?.map((item) => (
           <SidebarMenuItem key={item.name}>
@@ -46,7 +46,7 @@ export function NavProjects({
               <span>{item.name}</span>
             </SidebarMenuButton>
             <DropdownMenu>
-              <DropdownMenuTrigger
+              {/* <DropdownMenuTrigger
                 render={
                   <SidebarMenuAction
                     showOnHover
@@ -75,16 +75,16 @@ export function NavProjects({
                   <Trash2Icon className="text-muted-foreground" />
                   <span>Delete Project</span>
                 </DropdownMenuItem>
-              </DropdownMenuContent>
+              </DropdownMenuContent> */}
             </DropdownMenu>
           </SidebarMenuItem>
         ))}
-        <SidebarMenuItem>
+        {/* <SidebarMenuItem>
           <SidebarMenuButton className="text-sidebar-foreground/70">
             <MoreHorizontalIcon className="text-sidebar-foreground/70" />
             <span>More</span>
           </SidebarMenuButton>
-        </SidebarMenuItem>
+        </SidebarMenuItem> */}
       </SidebarMenu>
     </SidebarGroup>
   );

@@ -49,9 +49,7 @@ export default function CountdownButton({
   }, [targetTime]);
 
   return (
-    <button
-      className={`px-6 py-3 bg-blue-600 text-white rounded-xl shadow-lg ${className}`}
-    >
+    <p>
       {timeLeft ? (
         <span>
           {timeLeft.days}d : {timeLeft.hours}h : {timeLeft.minutes}m :{" "}
@@ -60,6 +58,6 @@ export default function CountdownButton({
       ) : (
         label
       )}
-    </button>
+    </p>
   );
 }
