@@ -12,7 +12,7 @@ import {
 
 export const NavMenu = (props: ComponentProps<typeof NavigationMenu>) => (
   <NavigationMenu {...props}>
-    <NavigationMenuList className="data-[orientation=vertical]:-ms-2 data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-start data-[orientation=vertical]:justify-start">
+    <NavigationMenuList className="flex flex-col md:flex-row items-center justify-center">
       <NavigationMenuItem>
         <NavigationMenuLink
           className={navigationMenuTriggerStyle()}

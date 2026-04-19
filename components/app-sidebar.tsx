@@ -33,6 +33,7 @@ export function AppSidebar({
 } & React.ComponentProps<typeof Sidebar>) {
   const routesMap: Record<string, SidebarRoutes> = {
     [Roles.admin]: adminRoutes,
+    [Roles.super_admin]: adminRoutes,
     [Roles.moderator]: moderatorRoutes,
   };
   const data = routesMap[user.role];

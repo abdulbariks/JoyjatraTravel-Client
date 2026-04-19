@@ -1,8 +1,12 @@
+"use client";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import CountdownButton from "./shared/CountdownButton";
 import Image from "next/image";
+import { useQuery } from "@tanstack/react-query";
+import { IEvent } from "@/types/event.types";
+import { getEvents } from "@/services/event.services";
 
 const features = [
   {
@@ -43,7 +47,19 @@ const features = [
   },
 ];
 
-const Events = () => {
+export default function Events({
+  initialQueryString,
+}: {
+  initialQueryString: string;
+}) {
+  const { data: events, isLoading } = useQuery<IEvent[]>({
+    queryKey: ["events", initialQueryString],
+    queryFn: () => getEvents(initialQueryString || ""),
+  });
+
+  console.log("events====================", events);
+
+  if (isLoading) return <p>Loading...</p>;
   return (
     <div className="flex min-h-screen items-center justify-center">
       <div className="w-full max-w-(--breakpoint-lg) px-6 py-10">
@@ -51,15 +67,15 @@ const Events = () => {
           Discover Your Next Adventure
         </h2>
         <div className="mx-auto mt-8 w-full space-y-20 md:mt-16">
-          {features.map((feature) => (
+          {events?.map((event) => (
             <div
               className="flex flex-col items-center gap-x-12 md:flex-row md:even:flex-row-reverse"
-              key={feature.location}
+              key={event.id}
             >
               <div className="aspect-4.5/3 w-full basis-1/2 rounded-xl border border-border/50 bg-muted relative overflow-hidden">
                 {" "}
                 <Image
-                  src={feature.image || "/images/placeholder.png"}
+                  src={event?.imageUrl || "/images/placeholder.png"}
                   alt="Event image"
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -69,22 +85,22 @@ const Events = () => {
               </div>
               <div className="shrink-0 basis-1/2">
                 <span className="font-medium text-muted-foreground text-sm uppercase">
-                  {feature.location}
+                  {event?.location}
                 </span>
                 <h4 className="font-semibold text-3xl tracking-[-0.01em]">
-                  {feature.title}
+                  {event?.name}
                 </h4>
 
-                <p className="text-muted-foreground">{feature.details}</p>
+                <p className="text-muted-foreground">{event?.description}</p>
                 <Button
                   className="mt-6 gap-3"
                   size="lg"
-                  render={<Link href={feature.tutorialLink} />}
+                  render={<Link href={`event/${event?.id}`} />}
                   nativeButton={false}
                 >
                   Booking for Details <ArrowRight />
                 </Button>
-                <CountdownButton targetDate="2026-04-10T18:00:00" />
+                <CountdownButton targetDate={event?.startDate} />
               </div>
             </div>
           ))}
@@ -92,6 +108,4 @@ const Events = () => {
       </div>
     </div>
   );
-};
-
-export default Events;
+}
