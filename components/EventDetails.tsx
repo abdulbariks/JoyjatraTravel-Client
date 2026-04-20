@@ -14,6 +14,7 @@ export default function EventDetails({
   userInfo,
 }: {
   event: IEvent;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   userInfo: any;
 }) {
   const [open, setOpen] = useState(false);

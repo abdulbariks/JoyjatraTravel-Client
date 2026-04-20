@@ -9,8 +9,8 @@ import {
 import { httpClient } from "@/lib/axios/httpClient";
 import { setTokenInCookies } from "@/lib/tokenUtils";
 import { ApiErrorResponse } from "@/types/api.types";
-import { ILoginResponse } from "@/types/auth.types";
-import { ILoginPayload, loginZodSchema } from "@/zod/auth.validation";
+import { ILoginResponse, IRegisterResponse } from "@/types/auth.types";
+import { ILoginPayload, IRegisterPayload, loginZodSchema, registerZodSchema } from "@/zod/auth.validation";
 import { redirect } from "next/navigation";
 
 // import { setTokenInCookies } from "@/lib/tokenUtils";
@@ -21,6 +21,90 @@ const BASE_API_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 if (!BASE_API_URL) {
   throw new Error("NEXT_PUBLIC_API_BASE_URL is not defined");
 }
+
+
+export const registerAction = async (
+  payload: IRegisterPayload,
+  redirectPath?: string,
+): Promise<IRegisterResponse | ApiErrorResponse> => {
+  const parsedPayload = registerZodSchema.safeParse(payload);
+
+  console.log(parsedPayload);
+
+  if (!parsedPayload.success) {
+    const firstError = parsedPayload.error.issues[0].message || "Invalid input";
+
+    return {
+      success: false,
+      message: firstError,
+    };
+  }
+
+  try {
+    const response = await httpClient.post<IRegisterResponse>(
+      "/auth/register",
+      parsedPayload.data,
+    );
+
+    console.log("response==========", response.data);
+
+    const { accessToken, refreshToken, token, user, message } = response.data;
+
+    if (accessToken) {
+      await setTokenInCookies("accessToken", accessToken);
+    }
+
+    if (refreshToken) {
+      await setTokenInCookies("refreshToken", refreshToken);
+    }
+
+    if (token) {
+      await setTokenInCookies(
+        "better-auth.session_token",
+        token,
+        24 * 60 * 60,
+      );
+    }
+
+    if (user) {
+      const { role, emailVerified, email } = user;
+
+      if (!emailVerified) {
+        redirect(`/verify-email?email=${email}`);
+      }
+
+      const targetPath =
+        redirectPath && isValidRedirectForRole(redirectPath, role as UserRole)
+          ? redirectPath
+          : getDefaultDashboardRoute(role as UserRole);
+
+      redirect(targetPath);
+    }
+
+    return response.data;
+  } catch (error: any) {
+    console.log(error, "error");
+
+    if (
+      error &&
+      typeof error === "object" &&
+      "digest" in error &&
+      typeof error.digest === "string" &&
+      error.digest.startsWith("NEXT_REDIRECT")
+    ) {
+      throw error;
+    }
+
+    return {
+      success: false,
+      message:
+        error?.response?.data?.message ||
+        `Registration failed: ${error.message}`,
+    };
+  }
+};
+
+
 
 export const loginAction = async (
   payload: ILoginPayload,

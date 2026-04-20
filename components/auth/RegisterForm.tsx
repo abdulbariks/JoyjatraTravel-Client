@@ -13,7 +13,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { loginAction } from "@/services/auth.services";
+import { registerAction } from "@/services/auth.services";
 import {
   IRegisterPayload,
   loginZodSchema,
@@ -38,7 +38,7 @@ const RegisterForm = ({ redirectPath }: RegisterFormProps) => {
 
   const { mutateAsync, isPending } = useMutation({
     mutationFn: (payload: IRegisterPayload) =>
-      loginAction(payload, redirectPath),
+      registerAction(payload, redirectPath),
   });
 
   const form = useForm({
@@ -93,8 +93,8 @@ const RegisterForm = ({ redirectPath }: RegisterFormProps) => {
             {(field) => (
               <AppField
                 field={field}
-                label="Email"
-                type="email"
+                label="Name"
+                type="text"
                 placeholder="Enter your email"
               />
             )}
