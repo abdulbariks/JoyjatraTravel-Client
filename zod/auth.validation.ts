@@ -23,6 +23,14 @@ export const registerZodSchema = z.object({
         // .regex(/[@$!%*?&]/, "Password must contain at least one special character (@, $, !, %, *, ?, &)")
 })
 
+export const verifyEmailZodSchema = z.object({
+  email: z.string().email(),
+  code: z.string().min(4, "Verification code must be at least 4 digits").max(6),
+});
+
+
+
 
 export type ILoginPayload = z.infer<typeof loginZodSchema>;
 export type IRegisterPayload = z.infer<typeof registerZodSchema>;
+export type IVerifyEmailPayload = z.infer<typeof verifyEmailZodSchema>;

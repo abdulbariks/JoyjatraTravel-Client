@@ -10,7 +10,7 @@ import { httpClient } from "@/lib/axios/httpClient";
 import { setTokenInCookies } from "@/lib/tokenUtils";
 import { ApiErrorResponse } from "@/types/api.types";
 import { ILoginResponse, IRegisterResponse } from "@/types/auth.types";
-import { ILoginPayload, IRegisterPayload, loginZodSchema, registerZodSchema } from "@/zod/auth.validation";
+import { ILoginPayload, IRegisterPayload, IVerifyEmailPayload, loginZodSchema, registerZodSchema, verifyEmailZodSchema } from "@/zod/auth.validation";
 import { redirect } from "next/navigation";
 
 // import { setTokenInCookies } from "@/lib/tokenUtils";
@@ -174,6 +174,28 @@ export const loginAction = async (
     return {
       success: false,
       message: `Login failed: ${error.message}`,
+    };
+  }
+};
+
+export const verifyEmailAction = async (
+  payload: IVerifyEmailPayload
+): Promise<{ success: boolean; message: string }> => {
+  const parsedPayload = verifyEmailZodSchema.safeParse(payload);
+
+  if (!parsedPayload.success) {
+    return { success: false, message: "Invalid input" };
+  }
+
+  try {
+    const response = await httpClient.post("/auth/verify-email", parsedPayload.data);
+    
+    // Redirect to login or dashboard after successful verification
+    redirect("/login"); 
+  } catch (error: any) {
+    return {
+      success: false,
+      message: error?.response?.data?.message || "Verification failed",
     };
   }
 };
