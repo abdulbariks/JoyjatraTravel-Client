@@ -74,15 +74,15 @@ export async function proxy(request: NextRequest) {
     }
 
     // 3. Auth Route Protection (Prevent logged-in users from seeing /login)
-    if (
-      isAuth &&
-      isValidAccessToken &&
-      !["/verify-email", "/reset-password"].includes(pathname)
-    ) {
-      return NextResponse.redirect(
-        new URL(getDefaultDashboardRoute(userRole as UserRole), request.url),
-      );
-    }
+    // if (
+    //   isAuth &&
+    //   isValidAccessToken &&
+    //   !["/verify-email", "/reset-password"].includes(pathname)
+    // ) {
+    //   return NextResponse.redirect(
+    //     new URL(getDefaultDashboardRoute(userRole as UserRole), request.url),
+    //   );
+    // }
 
     // 4. Public Route Access
     if (routerOwner === null) {

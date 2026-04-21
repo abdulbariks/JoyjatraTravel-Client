@@ -55,7 +55,7 @@ const LoginForm = ({ redirectPath }: LoginFormProps) => {
         }
       } catch (error: any) {
         console.log(`Login failed: ${error.message}`);
-        setServerError(`Login failed: ${error.message}`);
+        // setServerError(`Login failed: ${error.message}`);
       }
     },
   });

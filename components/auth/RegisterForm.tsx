@@ -56,12 +56,12 @@ const RegisterForm = ({ redirectPath }: RegisterFormProps) => {
         console.log(result);
 
         if (!result.success) {
-          setServerError(result.message || "Login failed");
+          // setServerError(result.message || "Login failed");
           return;
         }
       } catch (error: any) {
         console.log(`Login failed: ${error.message}`);
-        setServerError(`Login failed: ${error.message}`);
+        // setServerError(`Login failed: ${error.message}`);
       }
     },
   });

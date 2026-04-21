@@ -15,3 +15,21 @@ export const getBlogs = async (queryString?: string): Promise<IBlog[]> => {
     return [];
   }
 };
+
+
+export const createBlog = async (
+  formData: FormData,
+): Promise<IBlog | null> => {
+  try {
+    const res = await httpClient.post<IBlog>("/blog/create", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    return res.data ?? null;
+  } catch (error) {
+    console.log("Error creating blog:", error);
+    return null;
+  }
+};

@@ -46,7 +46,7 @@ export const registerAction = async (
       parsedPayload.data,
     );
 
-    console.log("response==========", response.data);
+    // console.log("response==========", response.data);
 
     const { accessToken, refreshToken, token, user, message } = response.data;
 
@@ -69,9 +69,9 @@ export const registerAction = async (
     if (user) {
       const { role, emailVerified, email } = user;
 
-      if (!emailVerified) {
-        redirect(`/verify-email?email=${email}`);
-      }
+      // if (!emailVerified) {
+      //   redirect(`/verify-email?email=${email}`);
+      // }
 
       const targetPath =
         redirectPath && isValidRedirectForRole(redirectPath, role as UserRole)
@@ -83,7 +83,7 @@ export const registerAction = async (
 
     return response.data;
   } catch (error: any) {
-    console.log(error, "error");
+    // console.log(error, "error");
 
     if (
       error &&
@@ -191,7 +191,7 @@ export const verifyEmailAction = async (
     const response = await httpClient.post("/auth/verify-email", parsedPayload.data);
     
     // Redirect to login or dashboard after successful verification
-    redirect("/login"); 
+    redirect("/"); 
   } catch (error: any) {
     return {
       success: false,

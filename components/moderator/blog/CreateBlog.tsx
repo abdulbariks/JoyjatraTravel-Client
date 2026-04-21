@@ -7,12 +7,14 @@ import JoditEditor from "jodit-react";
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { createBlog } from "@/services/blog.services";
+import { useMutation } from "@tanstack/react-query";
 
 const blogSchema = z.object({
   title: z.string().min(3, "Title is required"),
   description: z.string().min(10, "Description is required"),
   location: z.string().min(3, "Location is required"),
-  image: z.string().min(1, "Image URL is required"),
+  imageUrl: z.string().min(1, "Image URL is required"),
   content: z.string().min(20, "Content is required"),
 });
 
@@ -41,28 +43,61 @@ export default function CreateBlog() {
     Partial<Record<keyof BlogFormData, string[]>>
   >({});
 
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const { mutate, isPending } = useMutation({
+    mutationFn: createBlog,
+    onSuccess: () => {
+      alert("Event Created ✅");
+      form.reset();
+    },
+    onError: () => {
+      alert("Failed to create event ❌");
+    },
+  });
+
   const form = useForm({
     defaultValues: {
       title: "",
       description: "",
       location: "",
-      image: "",
+      imageUrl: "",
       content: "",
     } as BlogFormData,
 
+    // onSubmit: async ({ value }) => {
+    //   const result = blogSchema.safeParse(value);
+
+    //   if (!result.success) {
+    //     const fieldErrors = result.error.flatten().fieldErrors;
+    //     setErrors(fieldErrors);
+    //     return;
+    //   }
+
+    //   console.log("Blog Data:", result.data);
+
+    //   setErrors({});
+    //   form.reset();
+    // },
     onSubmit: async ({ value }) => {
       const result = blogSchema.safeParse(value);
 
       if (!result.success) {
-        const fieldErrors = result.error.flatten().fieldErrors;
-        setErrors(fieldErrors);
+        setErrors(result.error.flatten().fieldErrors);
         return;
       }
+      const formData = new FormData();
+      formData.append("title", result.data.title);
+      formData.append("description", result.data.description);
+      formData.append("location", result.data.location);
+      formData.append("content", result.data.content);
 
-      console.log("Blog Data:", result.data);
+      // image file
+      if (imageFile) {
+        formData.append("image", imageFile);
+      }
+      mutate(formData);
 
       setErrors({});
-      form.reset();
     },
   });
 
@@ -126,7 +161,7 @@ export default function CreateBlog() {
         </form.Field>
 
         {/* Image URL */}
-        <form.Field name="image">
+        {/* <form.Field name="image">
           {(field) => (
             <div>
               <Input
@@ -136,6 +171,36 @@ export default function CreateBlog() {
               />
               {errors.image && (
                 <p className="text-red-500 text-sm">{errors.image[0]}</p>
+              )}
+            </div>
+          )}
+        </form.Field> */}
+        {/* Image */}
+        <form.Field name="imageUrl">
+          {(field) => (
+            <div className="space-y-2">
+              {/* File Input */}
+              <Input
+                type="file"
+                accept="image/*"
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (!file) return;
+                  setImageFile(file);
+                  //  show file name instead of preview
+                  field.handleChange(file.name);
+                }}
+              />
+              {/* File Name Display */}
+              {field.state.value && (
+                <p className="text-sm text-muted-foreground">
+                  Selected: {field.state.value}
+                </p>
+              )}
+
+              {/* Error */}
+              {errors.imageUrl && (
+                <p className="text-red-500 text-sm">{errors.imageUrl[0]}</p>
               )}
             </div>
           )}
