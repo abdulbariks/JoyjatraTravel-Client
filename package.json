@@ -19,6 +19,7 @@
     "card": "^2.5.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
     "jodit-react": "^5.3.21",
     "jose": "^6.2.2",
     "jsonwebtoken": "^9.0.3",
