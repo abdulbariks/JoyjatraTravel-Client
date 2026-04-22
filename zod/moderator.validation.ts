@@ -11,7 +11,7 @@ export const ModeratorSchema = z.object({
   profilePhoto: z.string().url("Invalid image URL").nullable(),
   contactNumber: z.string().min(1, "Contact number is required").optional(),
   address: z.string().min(1, "Address is required").optional(),
-  experience: z.number().min(0, "Experience cannot be negative").optional(),
+  experience: z.string().min(0, "Experience is required").optional(),
   gender: z.enum([Gender.MALE, Gender.FEMALE, Gender.OTHER]),
   qualification: z.string().min(1, "Qualification is required").optional(),
 });

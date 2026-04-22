@@ -19,7 +19,7 @@ export interface IModerator {
   address: string;
   isDeleted: boolean;
   deletedAt: string | null;
-  experience: number;
+  experience: string | number;
   gender: "MALE" | "FEMALE" | "OTHER";
   qualification: string;
   createdAt: string;

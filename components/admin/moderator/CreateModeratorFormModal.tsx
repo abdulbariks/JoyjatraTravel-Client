@@ -43,7 +43,7 @@ const defaultValues: TModerator = {
   email: "",
   contactNumber: "",
   address: "",
-  experience: 0,
+  experience: "",
   gender: Gender.MALE,
   profilePhoto: null,
 };
@@ -105,9 +105,9 @@ const CreateModeratorFormModal = ({
       setOpen(false);
       form.reset();
 
-      void queryClient.invalidateQueries({ queryKey: ["doctors"] });
+      void queryClient.invalidateQueries({ queryKey: ["moderators"] });
       void queryClient.refetchQueries({
-        queryKey: ["doctors"],
+        queryKey: ["moderators"],
         type: "active",
       });
       router.refresh();
@@ -136,9 +136,9 @@ const CreateModeratorFormModal = ({
 
       <DialogContent className="max-h-[90vh] w-[calc(100vw-1.5rem)] max-w-[calc(100vw-1.5rem)] gap-0 overflow-hidden p-0 sm:w-[calc(100vw-3rem)] sm:max-w-[calc(100vw-3rem)] md:w-[calc(100vw-4rem)] md:max-w-[calc(100vw-4rem)] lg:w-[min(92vw,78rem)] lg:max-w-[min(92vw,78rem)] xl:w-[min(88vw,88rem)] xl:max-w-[min(88vw,88rem)] 2xl:w-[min(84vw,96rem)] 2xl:max-w-[min(84vw,96rem)]">
         <DialogHeader className="border-b px-6 py-5 pr-14">
-          <DialogTitle>Create Doctor</DialogTitle>
+          <DialogTitle>Create Moderator</DialogTitle>
           <DialogDescription>
-            Add a new doctor profile with account credentials and specialties.
+            Add a new Moderator profile with account credentials
           </DialogDescription>
         </DialogHeader>
 
@@ -166,7 +166,7 @@ const CreateModeratorFormModal = ({
                     <AppField
                       field={field}
                       label="Full Name"
-                      placeholder="Enter doctor name"
+                      placeholder="Enter moderator name"
                     />
                   )}
                 </form.Field>
@@ -182,7 +182,7 @@ const CreateModeratorFormModal = ({
                       field={field}
                       label="Email"
                       type="email"
-                      placeholder="doctor@example.com"
+                      placeholder="moderator@example.com"
                     />
                   )}
                 </form.Field>
@@ -219,21 +219,6 @@ const CreateModeratorFormModal = ({
                 </form.Field>
 
                 <form.Field
-                  name="contactNumber"
-                  validators={{
-                    onChange: ModeratorSchema.shape.contactNumber,
-                  }}
-                >
-                  {(field) => (
-                    <AppField
-                      field={field}
-                      label="Registration Number"
-                      placeholder="Enter registration number"
-                    />
-                  )}
-                </form.Field>
-
-                <form.Field
                   name="experience"
                   validators={{
                     onChange: ModeratorSchema.shape.experience,
@@ -248,53 +233,6 @@ const CreateModeratorFormModal = ({
                     />
                   )}
                 </form.Field>
-
-                <form.Field
-                  name="address"
-                  validators={{
-                    onChange: ModeratorSchema.shape.address,
-                  }}
-                >
-                  {(field) => (
-                    <AppField
-                      field={field}
-                      label="Appointment Fee"
-                      type="number"
-                      placeholder="Enter appointment fee"
-                    />
-                  )}
-                </form.Field>
-
-                <form.Field
-                  name="qualification"
-                  validators={{
-                    onChange: ModeratorSchema.shape.qualification,
-                  }}
-                >
-                  {(field) => (
-                    <AppField
-                      field={field}
-                      label="Qualification"
-                      placeholder="e.g. MBBS, FCPS"
-                    />
-                  )}
-                </form.Field>
-
-                <form.Field
-                  name="experience"
-                  validators={{
-                    onChange: ModeratorSchema.shape.experience,
-                  }}
-                >
-                  {(field) => (
-                    <AppField
-                      field={field}
-                      label="Current Working Place"
-                      placeholder="Enter current workplace"
-                    />
-                  )}
-                </form.Field>
-
                 <form.Field
                   name="qualification"
                   validators={{
@@ -350,6 +288,7 @@ const CreateModeratorFormModal = ({
                           <SelectContent>
                             <SelectItem value="MALE">Male</SelectItem>
                             <SelectItem value="FEMALE">Female</SelectItem>
+                            <SelectItem value="OTHER">Other</SelectItem>
                           </SelectContent>
                         </Select>
                         <FieldMessage error={firstError} />
@@ -417,7 +356,7 @@ const CreateModeratorFormModal = ({
                       disabled={!canSubmit || isLoadingSpecialties}
                       className="w-auto min-w-36"
                     >
-                      Create Doctor
+                      Create Moderator
                     </AppSubmitButton>
                   )}
                 </form.Subscribe>
