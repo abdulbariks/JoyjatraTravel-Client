@@ -20,12 +20,14 @@ export const getModerators = async (queryString: string) => {
 export const createModerator = async (
   payload: IModerator,
 ): Promise<ApiResponse<IModerator>> => {
+
+  // console.log("payload=======",payload);
+  
   try {
     // Ensure the endpoint matches your backend route
-    const response = await httpClient.post<ApiResponse<IModerator>>(
-      "/users/create-moderator",
-      payload,
-    );
+    const response = await httpClient.post<ApiResponse<IModerator>>("/moderator/create-moderator", payload);
+    // console.log("response=========",response);
+    
     return response?.data;
   } catch (error) {
     console.error("Error creating moderator:", error);

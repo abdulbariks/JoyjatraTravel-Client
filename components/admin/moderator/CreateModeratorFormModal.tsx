@@ -86,21 +86,23 @@ const CreateModeratorFormModal = ({
         password: value.password,
         name: value.name,
         email: value.email,
-        contactNumber: value.contactNumber,
-        address: value.address,
-        experience: value.experience ? Number(value.experience) : undefined,
-        gender: value.gender,
+        // contactNumber: value.contactNumber,
+        // address: value.address,
+        // experience: value.experience ? Number(value.experience) : undefined,
+        // gender: value.gender,
       };
+
+      // console.log("payload=============", payload);
 
       const result = await mutateAsync(
         payload as Parameters<typeof createModerator>[0],
       );
 
-      if (!result.success) {
-        toast.error(result.message || "Failed to create doctor");
-        return;
-      }
-
+      // console.log("result============", result);
+      // if (!result.success) {
+      //   toast.error(result.message || "Failed to create doctor");
+      //   return;
+      // }
       toast.success(result.message || "Doctor created successfully");
       setOpen(false);
       form.reset();
