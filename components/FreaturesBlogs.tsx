@@ -1,5 +1,5 @@
-"use client";
 import Image from "next/image";
+import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
@@ -9,23 +9,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useQuery } from "@tanstack/react-query";
 import { getBlogs } from "@/services/blog.services";
-import { IBlog } from "@/types/blog.types";
 import Link from "next/link";
-export default function Blog({
-  initialQueryString,
-}: {
-  initialQueryString: string;
-}) {
-  const { data: blogs, isLoading } = useQuery<IBlog[]>({
-    queryKey: ["blogs", initialQueryString],
-    queryFn: () => getBlogs(initialQueryString || ""),
-  });
 
-  // console.log("blogs====================", blogs);
+export default async function FreaturesBlogs() {
+  const blogs = await getBlogs();
+  // console.log("==========events", events);
+  if (!blogs || blogs.length === 0) {
+    return <div className="text-center py-20">No adventures found.</div>;
+  }
 
-  if (isLoading) return <p>Loading...</p>;
   return (
     <div className="mx-auto max-w-(--breakpoint-xl) px-6 py-16 xl:px-0">
       <div className="flex items-end justify-between">

@@ -27,6 +27,7 @@ interface Blog {
     name: string;
     profilePhoto?: string | null;
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   reviews: any[];
 }
 
