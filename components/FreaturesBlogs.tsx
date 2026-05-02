@@ -20,7 +20,7 @@ export default async function FreaturesBlogs() {
   }
 
   return (
-    <div className="mx-auto max-w-(--breakpoint-xl) px-6 py-16 xl:px-0">
+    <div className="mx-auto w-full max-w-(--breakpoint-lg) px-6 py-12 xl:px-0">
       <div className="flex items-end justify-between">
         <h2 className="font-semibold text-3xl tracking-tight">Latest Blogs</h2>
         <Select defaultValue="recommended">
